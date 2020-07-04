@@ -9,4 +9,6 @@ def upload(request):
         'location': 'Colmenarez',
         'age': 23
     }
+
+    print(request)
     return http.JsonResponse(data)
