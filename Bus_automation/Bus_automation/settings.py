@@ -31,6 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#6g626j-bn$_!thka*iex4$)iqxnn^l538#h^s4ab8v*n46_10'
 
 UPLOAD_PASSWORD = 'iKs7nP5c1RNscUCsl3VM5mH5728CqDs9j8ZB2LPzSXmXWmnSZjARCHJ6bqna'
+DECRIPTION_KEY = b'xMd81y_VmU1CZzwX2Lfpg6nOrMyF6eV7WyEQd41lsD4='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
