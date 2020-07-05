@@ -19,5 +19,5 @@ from API.views import upload
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', upload),
+    path('api', upload),
 ]

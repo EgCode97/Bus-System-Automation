@@ -10,7 +10,8 @@
 import serial
 import serial.tools.list_ports
 import time
-
+import requests
+import datetime
 #---------------------------------------------------------------------------------
 #   Blueeth module commands
 COMMAND_SCAN = "AT+INQ\r\n" # Scan for slave blueetooth devices -> returns the scanned devices with a number and MAC address
@@ -18,6 +19,8 @@ COMMAND_CONNECT = "AT+CONN*\r\n" #
 
 COMMAND_GET_ID = "B"
 COMMAND_DISCONNECT = chr(0)
+
+UPLOAD_URL = 'http://localhost:8000/api'
 
 class BusStop:
     def __init__(self):
@@ -75,6 +78,15 @@ class BusStop:
         print(response)
         return response
 
+    def upload_data(self, bus_id: int):
+        data = {
+            'token': 'gAAAAABfAkRyH9AUJUCmjDhv-HQ3TuGlkvd65_mtNAqQVo-xuvA_wqVamd0DWXyWe3joVwUiVcJeKWFcibks8Z6kxIGNXky0RNIwPaGWih6lk0sYhuAr8HDOeYMlYn21zX_t-J8T28-06GCQ-hUfVPYkAvDNAjs7Kw==',
+            'id': bus_id,
+            'time': datetime.datetime.now(),
+            'current_location': 'La mata'
+        }
+
+        response = requests.post(UPLOAD_URL, data=data)
         
 
 
@@ -89,7 +101,7 @@ while True:
 
     for device in scan:
         device_mac = scan[device]
-
+ 
         if device_mac in bus_stop.connected_devices:
             print(f"DEVICE '{device}' HAVE ALREDY BEEN CONNECTED")
             continue
@@ -102,17 +114,18 @@ while True:
 
 
         bus_stop.send( "B" )
-        time.sleep(0.1)
-        bus_id = bus_stop.receive(20)
+        time.sleep(0.2)
+        bus_id = ord(bus_stop.receive(20).encode())
 
-        print(f"ID -> {bus_id.encode()}")
+        print(f"ID -> {bus_id}")
 
+        bus_stop.upload_data(bus_id)
 
         time.sleep(0.1)
         bus_stop.send( COMMAND_DISCONNECT )
         print("DESCONECTADO\n")
         time.sleep(30)
+        print("REINICIANDO\n")
 
 
-
-        print(bus_stop.connected_devices)
+print(bus_stop.connected_devices)
