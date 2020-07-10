@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <script src="https://kit.fontawesome.com/2c23f77634.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <span id="courtain"></span>
+
+    <header>
+        <h1 class="logo">LOGO</h1>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="" class="nav-item"> <h3> <i class="fas fa-route menu-icon"></i> Rutas </h3></a></li>
+                <li><a href="" class="nav-item"> <h3> <i class="fas fa-bus menu-icon"></i> Paradas  </h3></a></li>
+                <li><a href="" class="nav-item"> <h3> <i class="fas fa-map-marked-alt menu-icon"></i> Zonas </h3></a></li>
+            </ul>
+
+            <span id="open-menu-btn" onclick="openMenu()">
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+            </span>
+
+            <span id="close-menu-btn" onclick="closeMenu()">
+                <div class="crossed-bar"></div>
+                <div class="crossed-bar"></div>
+            </span>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <div class="search-container">
+
+            <!--  Hexagon shaped inputs for the search type  -->
+            <div id="container-hex">
+                <div class="hexagon search-option" id="Route" value='Rutas' onclick="checkOneOption(document.getElementById('Route'))">
+                    <span class="hex-shadow"></span>
+                    <span>
+                        <i class="fas fa-route hex-icon"></i>
+                        <h4 class="hexagon-option-text">Buscar Ruta</h4>
+                    </span>
+                </div>
+
+                <div class="hexagon search-option" id="BusStop" value='Paradas' onclick="checkOneOption(document.getElementById('BusStop'))">
+                    <span>
+                        <i class="fas fa-bus hex-icon"></i>
+                        <h4 class="hexagon-option-text">Buscar Paradas</h4>
+                    </span>
+                </div>
+
+                <div class="hexagon search-option" id="Zone" value='Zonas' onclick="checkOneOption(document.getElementById('Zone'))">
+                    <span>
+                        <i class="fas fa-map-marked-alt hex-icon"></i>
+                        <h4 class="hexagon-option-text">Buscar Zonas</h4>
+                    </span>
+                </div>
+            </div>
+            <!--  END HEXAGON DIV  -->
+            
+            <!--  Dropdown menu with the options   -->
+            <nav class="search-fields">
+                <button id="dropdown-btn" onclick="showDropdown()">
+                    <p class="btn-text">Ver &nbsp <p class="btn-text" id="search-btn-value">Rutas</p></p>
+                </button>
+                <!--  Routes  -->
+                <ul class="search-list" value='Rutas'>
+                    <a href="#" class="search-item"> <li> Ruta 1 </li> </a>
+                    <a href="#" class="search-item"> <li> Ruta 2 </li> </a>
+                    <a href="#" class="search-item"> <li> Ruta 3 </li> </a>
+                </ul>
+                <!--  Ends Routes  -->
+
+                <!--  Bus Stops  -->
+                <ul class="search-list" value='Paradas'>
+                    <a href="#" class="search-item"> <li> Parada 1 </li> </a>
+                    <a href="#" class="search-item"> <li> Parada 2 </li> </a>
+                    <a href="#" class="search-item"> <li> Parada 3 </li> </a>
+                    <a href="#" class="search-item"> <li> Parada 4 </li> </a>
+                    <a href="#" class="search-item"> <li> Parada 5 </li> </a>
+                </ul>
+                <!--  Ends Bus Stops  -->
+
+                <!--  Zones  -->
+                <ul class="search-list" value='Zonas'>
+                    <a href="#" class="search-item"> <li> Zona 1 </li> </a>
+                    <a href="#" class="search-item"> <li> Zona 2 </li> </a>
+                </ul>
+                <!--  Ends zones  -->
+            </nav>
+
+        </div>
+
+
+
+    </main>
+
+    <footer>
+        <h1>FOOTER</h1>
+    </footer>
+
+    <script src="./JS/toggle_menu.js"></script>
+    <script src="./JS/input-search-type.js"></script>
+</body>
+</html>
