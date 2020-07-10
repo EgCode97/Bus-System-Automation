@@ -10,6 +10,12 @@ var menuItems = menuToggle.children;
 
 window.onresize = fixNavBar;
 
+// open and close the menu to avoid the buttons showing at the same time on mobile version
+if (window.innerWidth <= 600 ){
+    openMenu()
+    closeMenu()
+}
+
 function openMenu(){
     openToggleBtn.style.height = 0;
     openToggleBtn.style.opacity = 0;
