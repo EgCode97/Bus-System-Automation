@@ -8,6 +8,8 @@ var courtain = document.getElementById('courtain');
 
 var menuItems = menuToggle.children;
 
+var header = document.getElementsByTagName('header')[0]
+
 window.onresize = fixNavBar;
 
 // open and close the menu to avoid the buttons showing at the same time on mobile version
@@ -17,6 +19,10 @@ window.onload = function(){
         openMenu()
         closeMenu()
     }
+}
+
+window.onscroll = function(){
+    header.style.top = `${window.pageYOffset}px`
 }
 
 function openMenu(){
@@ -29,7 +35,6 @@ function openMenu(){
     closeToggleBtn.style.zIndex = 1;
 
     menuToggle.style.width = "200px";
-
     courtain.style.width = "100%";
 
     console.log(`La altura total es ${document.getElementsByTagName('body')[0].clientHeight}`)
