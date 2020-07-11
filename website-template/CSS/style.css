@@ -356,13 +356,32 @@ main .search-fields{
 
 footer{
     background-color: var(--color-main);
-    height: 100px;
     width: 100%;
+    padding: 10px 15px 5px;
     color: #fff;
+    display: flex;
+    flex-wrap: wrap;
 }
 
+footer section{
+    width: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 15px; 
+}
 
+footer section .footer-section-item{
+    text-decoration: none;
+    color: inherit;
+    margin: 10px 0 0 10px;
+}
 
+footer section a:hover{
+    color: var(--color-accent-light);
+    font-weight: 900;
+}
 
 
 @media only screen and (max-width: 600px){
@@ -427,6 +446,11 @@ footer{
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    footer section{
+        width: 30%;
+        align-items: flex-start;
     }
 
 }
