@@ -104,3 +104,4 @@ Desktop.ini
 # Thumbnails
 ._*
 Thumbs.db
+*/__pycache__
