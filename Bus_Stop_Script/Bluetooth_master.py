@@ -12,6 +12,7 @@ import serial.tools.list_ports
 import time
 import requests
 import datetime
+from cryptography.fernet import Fernet
 #---------------------------------------------------------------------------------
 #   Blueeth module commands
 COMMAND_SCAN = "AT+INQ\r\n" # Scan for slave blueetooth devices -> returns the scanned devices with a number and MAC address
@@ -27,6 +28,7 @@ class BusStop:
         self.connected_devices = list()
         self.checked_bus = list()
         self.comport = self.get_comport()
+        self.location_name = 'La mata'
 
     def get_comport(self):
         'Get the comport in wich the Bluetooth module is connected. Returns None if no module is connected'
@@ -79,15 +81,19 @@ class BusStop:
         return response
 
     def upload_data(self, bus_id: int):
-        data = {
+        payload = {
             'token': 'gAAAAABfAkRyH9AUJUCmjDhv-HQ3TuGlkvd65_mtNAqQVo-xuvA_wqVamd0DWXyWe3joVwUiVcJeKWFcibks8Z6kxIGNXky0RNIwPaGWih6lk0sYhuAr8HDOeYMlYn21zX_t-J8T28-06GCQ-hUfVPYkAvDNAjs7Kw==',
             'id': bus_id,
             'time': datetime.datetime.now(),
-            'current_location': 'La mata'
+            'current_location': self.location_name
         }
 
-        response = requests.post(UPLOAD_URL, data=data)
-        
+        key = Fernet.generate_key()
+        f = Fernet(key)
+
+        data = key + f.encrypt(payload.__str__().encode()) 
+
+        response = requests.put(UPLOAD_URL, data=data)        
 
 
 
@@ -103,7 +109,7 @@ while True:
         device_mac = scan[device]
  
         if device_mac in bus_stop.connected_devices:
-            print(f"DEVICE '{device}' HAVE ALREDY BEEN CONNECTED")
+            print(f"DEVICE '{device}' HAVE ALREADY BEEN CONNECTED")
             continue
 
         bus_stop.connect_device(device)
