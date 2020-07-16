@@ -2,7 +2,7 @@ from django.shortcuts import render
 import django.http as http
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import BusStop, BusUnit, Route
+from .models import BusStop, BusUnit, Route, Zone
 from Bus_automation.settings import UPLOAD_PASSWORD, DECRIPTION_KEY
 
 
@@ -66,3 +66,14 @@ def upload(request):
         else:
             print("PASSWORD MALA -->", password)
     return http.JsonResponse(dato_prueba)
+
+
+def home(request):
+    data = dict()
+
+    data['stops'] = [stop.name for stop in BusStop.objects.all()]
+    data['routes'] = [route.route for route in Route.objects.all()]
+    data['zones'] = [zone.name for zone in Zone.objects.all()]
+
+    print(data)
+    return http.HttpResponse(f"paradas: {data['stops']} // rutas: {data['routes']} // zonas: {data['zones']}")

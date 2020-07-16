@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from API.views import upload
+import API.views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api', upload),
+    path('api', API.views.upload),
+    path('', API.views.home)
 ]
