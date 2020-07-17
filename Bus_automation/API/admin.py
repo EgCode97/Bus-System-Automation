@@ -10,7 +10,11 @@ class BusUnitAdmin(admin.ModelAdmin):
 
 
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ('route',)
+    list_display = ('name', 'route_description',
+    'stop1', 'stop2', 'stop3', 'stop4', 'stop5',
+    'stop6', 'stop7', 'stop8', 'stop9', 'stop10',
+    'stop11', 'stop11', 'stop13', 'stop14', 'stop15',
+    'stop16', 'stop17', 'stop18', 'stop19', 'stop20',)
 
 class ZoneAdmin(admin.ModelAdmin):
     list_display = ('name',)
