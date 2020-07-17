@@ -69,11 +69,38 @@ def upload(request):
 
 
 def home(request):
-    data = dict()
+    context = dict()
+    context['title'] = "Home"
 
-    data['stops'] = [stop.name for stop in BusStop.objects.all()]
-    data['routes'] = [route.route for route in Route.objects.all()]
-    data['zones'] = [zone.name for zone in Zone.objects.all()]
+    context['style_home'] = True
 
-    print(data)
-    return http.HttpResponse(f"paradas: {data['stops']} // rutas: {data['routes']} // zonas: {data['zones']}")
+    context['stops'] = [stop.name for stop in BusStop.objects.all()]
+    context['routes'] = [route.name for route in Route.objects.all()]
+    context['zones'] = [zone.name for zone in Zone.objects.all()]
+
+    print(context)
+    return render(request, "home.html", context=context)
+
+
+def busqueda(request, query_param):
+    context = dict()
+    context['title'] = "Buscar"
+
+    context['style_search'] = True
+
+    if query_param=='rutas':
+        context['content_type'] = 'routes'
+        context['title'] += " Rutas"
+        context['routes'] = [route for route in Route.objects.all()]
+
+    elif query_param == 'paradas':
+        context['content_type'] = 'bus_stops'
+        context['title'] += " Paradas"
+        context['stops'] = [stop for stop in BusStop.objects.all()]
+    
+    else:
+        context['content_type'] = 'zones'
+        context['title'] += " Zonas"
+        context['zones'] = [zone for zone in Zone.objects.all()]
+
+    return render(request, "search.html", context)

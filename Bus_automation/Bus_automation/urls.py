@@ -20,5 +20,6 @@ import API.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api', API.views.upload),
-    path('', API.views.home)
+    path('', API.views.home),
+    path('busqueda/<query_param>', API.views.busqueda),
 ]
