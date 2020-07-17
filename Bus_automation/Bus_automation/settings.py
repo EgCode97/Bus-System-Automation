@@ -69,7 +69,7 @@ ROOT_URLCONF = 'Bus_automation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,28 +134,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# The next list uis necesary to use custom css on the templates
 
-
-
-
-CORS_ORIGIN_ALLOW_ALL = False
-
-CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:5500/prueba.html",
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
 ]
-
-CORS_ALLOW_METHODS = ["GET"]
-
-CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-]
-
-# DOCUMENTACION https://pypi.org/project/django-cors-headers/
