@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<div class="search-container">
+
+    <!--  Hexagon shaped inputs for the search type  -->
+    <div id="container-hex">
+        <div class="hexagon search-option" id="Route" value='Rutas' onclick="checkOneOption(document.getElementById('Route'))">
+            <span class="hex-shadow"></span>
+            <span>
+                <i class="fas fa-route hex-icon"></i>
+                <h4 class="hexagon-option-text">Rutas</h4>
+            </span>
+        </div>
+
+        <div class="hexagon search-option" id="BusStop" value='Paradas' onclick="checkOneOption(document.getElementById('BusStop'))">
+            <span>
+                <i class="fas fa-bus hex-icon"></i>
+                <h4 class="hexagon-option-text">Paradas</h4>
+            </span>
+        </div>
+
+        <div class="hexagon search-option" id="Zone" value='Zonas' onclick="checkOneOption(document.getElementById('Zone'))">
+            <span>
+                <i class="fas fa-map-marked-alt hex-icon"></i>
+                <h4 class="hexagon-option-text">Zonas</h4>
+            </span>
+        </div>
+    </div>
+    <!--  END HEXAGON DIV  -->
+    
+    <!--  Dropdown menu with the options   -->
+    <nav class="search-fields">
+        <button id="dropdown-btn" onclick="showDropdown()">
+            <p class="btn-text">Ver &nbsp <p class="btn-text" id="search-btn-value">Rutas</p></p>
+        </button>
+        <!--  Routes  -->
+        <ul class="search-list" value='Rutas'>
+            {% for route in routes %}
+                <a href="#" class="search-item"> <li> {{route}} </li> </a>
+            {% endfor %}
+        </ul>
+        <!--  Ends Routes  -->
+
+        <!--  Bus Stops  -->
+        <ul class="search-list" value='Paradas'>
+            {% for stop in stops %}
+                <a href="#" class="search-item"> <li> {{stop}} </li> </a>
+            {% endfor %}
+        </ul>
+        <!--  Ends Bus Stops  -->
+
+        <!--  Zones  -->
+        <ul class="search-list" value='Zonas'>
+            {% for zone in zones %}
+                <a href="#" class="search-item"> <li> {{zone}} </li> </a>
+            {% endfor %}
+        </ul>
+        <!--  Ends zones  -->
+    </nav>
+
+</div>
+
+{% endblock %}

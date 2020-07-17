@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> {% block title %}{% endblock %} </title>
+
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/2c23f77634.js" crossorigin="anonymous"></script>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    {% if style_home %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    {% endif %}
+
+    {% if style_search %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}">
+    {% endif %}
+</head>
+
+<body>
+    <span id="courtain"></span>
+
+    <header>
+        <h1 class="logo">LOGO</h1>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="./busqueda/rutas" class="nav-item"> <h3> <i class="fas fa-route menu-icon"></i> Rutas </h3></a></li>
+                <li><a href="./busqueda/paradas" class="nav-item"> <h3> <i class="fas fa-bus menu-icon"></i> Paradas  </h3></a></li>
+                <li><a href="./busqueda/zonas" class="nav-item"> <h3> <i class="fas fa-map-marked-alt menu-icon"></i> Zonas </h3></a></li>
+            </ul>
+
+            <span id="open-menu-btn" onclick="openMenu()">
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+            </span>
+
+            <span id="close-menu-btn" onclick="closeMenu()">
+                <div class="crossed-bar"></div>
+                <div class="crossed-bar"></div>
+            </span>
+        </nav>
+
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+
+        <section class="footer-section">
+            <h3>Redes Sociales</h3>
+            <a href="#" class="footer-section-item"><i class="fab fa-facebook-f"></i> Facebook </a>
+            <a href="#" class="footer-section-item"><i class="fab fa-instagram"></i> Instagram </a>
+            <a href="#" class="footer-section-item"><i class="fab fa-twitter"></i> Twitter </a>
+        </section>
+        
+        <section class="footer-section">
+            <h3>Contacto</h3>
+            <p class="footer-section-item">Email: </p>
+            <p class="footer-section-item">Telefono: </p>
+            <p class="footer-section-item">Direccion: <i>Cabudare Edo. Lara</i></p>
+        </section>
+
+        <section class="footer-section">
+            <h3>Mapa del Sitio</h3>
+            <a href="./home.html" class="footer-section-item"> Inicio </a>
+            <a href="./busqueda/rutas" class="footer-section-item"> Rutas </a>
+            <a href="./busqueda/paradas" class="footer-section-item"> Paradas </a>
+            <a href="./busqueda/zonas" class="footer-section-item"> Zonas </a>
+        </section>
+        
+
+    </footer>
+
+    <script src="{% static 'JS/toggle_menu.js' %}"></script>
+    {% if style_home %}
+        <script src="{% static 'JS/input-search-type.js' %}"></script>
+    {% endif %}
+
+
+    {% if style_search %}
+        <script src="{% static 'JS/resize-cards.js' %}"></script>
+    {% endif %}
+
+</body>
+</html>
