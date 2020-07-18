@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/timeline.css">
+    <script src="https://kit.fontawesome.com/2c23f77634.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <span id="courtain"></span>
+
+    <header>
+        <h1 class="logo">LOGO</h1>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="./busqueda.html" class="nav-item"> <h3> <i class="fas fa-route menu-icon"></i> Rutas </h3></a></li>
+                <li><a href="./busqueda.html" class="nav-item"> <h3> <i class="fas fa-bus menu-icon"></i> Paradas  </h3></a></li>
+                <li><a href="./busqueda.html" class="nav-item"> <h3> <i class="fas fa-map-marked-alt menu-icon"></i> Zonas </h3></a></li>
+            </ul>
+
+            <span id="open-menu-btn" onclick="openMenu()">
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+            </span>
+
+            <span id="close-menu-btn" onclick="closeMenu()">
+                <div class="crossed-bar"></div>
+                <div class="crossed-bar"></div>
+            </span>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <div class="timeline">
+            <span class="timeline-bar"></span>
+            <a href="#">
+                <article class="container left">
+                    <div class="content">
+                        <h2 class="title">Primera parada</h2>
+                        <p class="description">Una descripcion de la primera parada</p>
+                    </div>
+                </article>
+            </a>
+
+
+            <article class="container right">
+                <div class="content">
+                    <h2 class="title">Segunda parada</h2>
+                    <p class="description">Una descripcion de la segunda parada</p>
+                </div>
+            </article>
+
+
+            <article class="container left">
+                <div class="content">
+                    <h2 class="title">Tercera parada</h2>
+                    <p class="description">Carrera 21 entre calles 30 y 31</p>
+                </div>
+            </article>
+
+ 
+        </div>
+
+    </main>
+
+    <footer>
+
+        <section class="footer-section">
+            <h3>Redes Sociales</h3>
+            <a href="#" class="footer-section-item"><i class="fab fa-facebook-f"></i> Facebook </a>
+            <a href="#" class="footer-section-item"><i class="fab fa-instagram"></i> Instagram </a>
+            <a href="#" class="footer-section-item"><i class="fab fa-twitter"></i> Twitter </a>
+        </section>
+        
+        <section class="footer-section">
+            <h3>Contacto</h3>
+            <p class="footer-section-item">Email: </p>
+            <p class="footer-section-item">Telefono: </p>
+            <p class="footer-section-item">Direccion: <i>Cabudare Edo. Lara</i></p>
+        </section>
+
+        <section class="footer-section">
+            <h3>Mapa del Sitio</h3>
+            <a href="./home.html" class="footer-section-item"> Inicio </a>
+            <a href="./busqueda.html" class="footer-section-item"> Rutas </a>
+            <a href="./busqueda.html" class="footer-section-item"> Paradas </a>
+            <a href="./busqueda.html" class="footer-section-item"> Zonas </a>
+        </section>
+        
+
+    </footer>
+
+    <script src="./JS/toggle_menu.js"></script>
+    <script src="./JS/timeline.js"></script>
+</body>
+</html>
