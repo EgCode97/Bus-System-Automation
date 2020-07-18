@@ -6,7 +6,7 @@
 
     {% if content_type == 'routes' %}
         {% for route in routes %}
-            <a href="#">
+            <a href="/ver/ruta/{{route.name}}">
                 <article class="card">
                     <h3 class="card-title">{{route.name}}</h3>
                     <p class="card-description">{{route.route_description}}</p>
