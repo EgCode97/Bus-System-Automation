@@ -20,10 +20,10 @@ window.onload = function(){
         closeMenu()
     }
 }
-
+/*
 window.onscroll = function(){
     header.style.top = `${window.pageYOffset}px`
-}
+}*/
 
 function openMenu(){
     openToggleBtn.style.height = 0;

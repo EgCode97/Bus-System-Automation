@@ -46,7 +46,7 @@ header{
     align-items: center;
     background-color: var(--color-main);
     color: #fff;
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 2;
 }
