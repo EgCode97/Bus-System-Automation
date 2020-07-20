@@ -13,6 +13,9 @@ class BusStop(models.Model):
     address = models.CharField(max_length=150)
     zone = models.ForeignKey(Zone, on_delete=models.CASCADE)
 
+    def get_dict_info(self):
+        return {"name":self.name, "address":self.address, "zone":self.zone}
+
     def __str__(self):
         return self.name
 
@@ -31,7 +34,7 @@ class Route(models.Model):
     stop9 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada9", verbose_name='Parada 9')
     stop10 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada10", verbose_name='Parada 10')
     stop11 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada11", verbose_name='Parada 11')
-    stop11 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada12", verbose_name='Parada 12')
+    stop12 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada12", verbose_name='Parada 12')
     stop13 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada13", verbose_name='Parada 13')
     stop14 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada14", verbose_name='Parada 14')
     stop15 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada15", verbose_name='Parada 15')
@@ -40,6 +43,15 @@ class Route(models.Model):
     stop18 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada18", verbose_name='Parada 18')
     stop19 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada19", verbose_name='Parada 19')
     stop20 = models.ForeignKey(BusStop, on_delete=models.SET_NULL, null=True, blank=True, related_name= "Parada20", verbose_name='Parada 20')
+
+    def get_route_stops(self)->list:
+        'Returns a list containing al the BusStops instances that are associated with the given Route instance'
+        fields = [
+            self.stop1, self.stop2, self.stop3, self.stop4, self.stop5, self.stop6, self.stop7, self.stop8, self.stop9, self.stop10,
+            self.stop11, self.stop12, self.stop13, self.stop14, self.stop15, self.stop16, self.stop17, self.stop18, self.stop19, self.stop20 
+        ]
+        stops = [stop for stop in fields if stop is not None]
+        return stops
 
     def __str__(self):
         return self.name
