@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+{% load custom_filters %}
+
+<div class="unit-list-container">
+    <h3>Ultimas ubicaciones registradas de unidades {{title}}</h3>
+
+    <ul>
+        {% for unit in units %}
+        <li>Unidad {{unit.id}}: {{unit.location}}</li>
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+<div class="timeline">
+    <span class="timeline-bar"></span>
+
+
+    {% for index, stop in route_stops %}
+        {% if index|is_even %}
+            <article class="timeline-container left">
+        {% else %}
+            <article class="timeline-container right">
+        {% endif %}
+                <a href="#">
+                    <div class="content">
+                        <h2 class="title">{{stop.name}}</h2>
+                        <p class="description">{{stop.address}}</p>
+                    </div>
+                </a>
+            </article>
+    {% endfor %}
+
+
+
+
+</div>
+
+{% endblock %}

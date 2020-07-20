@@ -26,7 +26,7 @@
 
     {% else %}
         {% for zone in zones %}
-            <a href="#">
+            <a href="/ver/zona/{{zone.name}}">
                 <article class="card">
                     <h3 class="card-title">{{zone.name}}</h3>
                     <p class="card-description">{{zone.description}}</p>

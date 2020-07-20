@@ -20,6 +20,10 @@
     {% if style_search %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}">
     {% endif %}
+
+    {% if style_route_path %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/route_path.css' %}">
+    {% endif %}
 </head>
 
 <body>
@@ -87,6 +91,10 @@
 
     {% if style_search %}
         <script src="{% static 'JS/resize-cards.js' %}"></script>
+    {% endif %}
+
+    {% if style_route_path %}
+        <script src="{% static 'JS/route_path.js' %}"></script>
     {% endif %}
 
 </body>
