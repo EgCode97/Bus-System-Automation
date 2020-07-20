@@ -36,7 +36,10 @@ DECRIPTION_KEY = b'xMd81y_VmU1CZzwX2Lfpg6nOrMyF6eV7WyEQd41lsD4='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "d4e9d996d717.ngrok.io",
+    "127.0.0.1",
+]
 
 
 # Application definition
