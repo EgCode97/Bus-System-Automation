@@ -22,4 +22,5 @@ urlpatterns = [
     path('api', API.views.upload),
     path('', API.views.home),
     path('busqueda/<query_param>', API.views.busqueda),
+    path('ver/<query_object>/<query_param>', API.views.ver),
 ]

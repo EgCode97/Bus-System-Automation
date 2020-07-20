@@ -10,6 +10,8 @@ from cryptography.fernet import Fernet
 import datetime
 
 # Create your views here.
+
+
 @csrf_exempt
 def upload(request):
     dato_prueba = {
@@ -53,14 +55,14 @@ def upload(request):
         print("PASSWORD->", password)
         '''
 
-
        #print("HACIENDO POST->", request.body)
 
         if password == UPLOAD_PASSWORD:
             print("CONTRASEÑA CORRECTA\n\n")
 
-            unit = BusUnit.objects.get(id= data['id'])
-            current_location = BusStop.objects.get(name= data['current_location'])
+            unit = BusUnit.objects.get(id=data['id'])
+            current_location = BusStop.objects.get(
+                name=data['current_location'])
             unit.location = current_location
             unit.save()
         else:
@@ -78,7 +80,6 @@ def home(request):
     context['routes'] = [route.name for route in Route.objects.all()]
     context['zones'] = [zone.name for zone in Zone.objects.all()]
 
-    print(context)
     return render(request, "home.html", context=context)
 
 
@@ -88,7 +89,7 @@ def busqueda(request, query_param):
 
     context['style_search'] = True
 
-    if query_param=='rutas':
+    if query_param == 'rutas':
         context['content_type'] = 'routes'
         context['title'] += " Rutas"
         context['routes'] = [route for route in Route.objects.all()]
@@ -97,10 +98,45 @@ def busqueda(request, query_param):
         context['content_type'] = 'bus_stops'
         context['title'] += " Paradas"
         context['stops'] = [stop for stop in BusStop.objects.all()]
-    
+
     else:
         context['content_type'] = 'zones'
         context['title'] += " Zonas"
         context['zones'] = [zone for zone in Zone.objects.all()]
 
     return render(request, "search.html", context)
+
+
+def ver(request, query_object, query_param):
+    context = dict()
+
+    if query_object == 'ruta':
+        context['title'] = f"Ruta {query_param}"
+        context['style_route_path'] = True
+
+        # Get the units asignated to the given route
+        context['units'] = BusUnit.objects.filter(route__name__iexact= query_param)
+        print(context['units'])
+
+
+        # get the bus stops for the given route
+        route_stops = Route.objects.get(name=query_param).get_route_stops()
+        print(route_stops)
+        print(type(route_stops))
+        context['route_stops'] = enumerate(route_stops)
+
+        return render(request, 'route_path.html', context)
+
+
+    elif query_object == 'zona':
+        # get the bus stops from the given zone
+        zone_stops = BusStop.objects.filter(zone__name__iexact= query_param)
+        print(query_param)
+        print(zone_stops)
+        context['content_type'] = 'bus_stops'
+        context['style_search'] = True
+        context['stops'] = zone_stops
+
+        return render(request, "search.html", context)
+
+    return http.HttpResponse(f"object-->{query_object}\nParametro-->{query_param}")
