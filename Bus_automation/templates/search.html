@@ -16,7 +16,7 @@
 
     {% elif content_type == 'bus_stops' %}
         {% for stop in stops %}
-            <a href="#">
+            <a href="/ver/parada/{{stop.name}}">
                 <article class="card">
                     <h3 class="card-title">{{stop.name}}</h3>
                     <p class="card-description">{{stop.address}}</p>

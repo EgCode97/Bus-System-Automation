@@ -23,4 +23,5 @@ urlpatterns = [
     path('', API.views.home),
     path('busqueda/<query_param>', API.views.busqueda),
     path('ver/<query_object>/<query_param>', API.views.ver),
+    #path('parada/<bus_stop>', API.views.bus_stop_register)
 ]
