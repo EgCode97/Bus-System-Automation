@@ -2,7 +2,7 @@ from django.shortcuts import render
 import django.http as http
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import BusStop, BusUnit, Route, Zone
+from .models import BusStop, BusUnit, Route, Zone, Register
 from Bus_automation.settings import UPLOAD_PASSWORD, DECRIPTION_KEY
 
 
@@ -41,30 +41,18 @@ def upload(request):
 
         password = f.decrypt(password).decode()
 
-        #posted_data = request.POST.dict()
-        '''
-        posted_data = request.POST.dict()
-
-
-        fernet = Fernet(DECRIPTION_KEY)
-
-        pass_encrypted =  posted_data['token'].encode()
-
-        print("PASS ENCRYPTED->", pass_encrypted)
-        password = fernet.decrypt(pass_encrypted).decode()
-        print("PASSWORD->", password)
-        '''
-
-       #print("HACIENDO POST->", request.body)
-
         if password == UPLOAD_PASSWORD:
             print("CONTRASEÑA CORRECTA\n\n")
 
             unit = BusUnit.objects.get(id=data['id'])
-            current_location = BusStop.objects.get(
-                name=data['current_location'])
+            current_location = BusStop.objects.get(name=data['current_location'])
             unit.location = current_location
             unit.save()
+
+            # register the bus stop in register table
+            reg = Register(location=current_location, unit= unit, datetime= data['time'])
+            reg.save()
+            print(reg)
         else:
             print("PASSWORD MALA -->", password)
     return http.JsonResponse(dato_prueba)
@@ -139,4 +127,20 @@ def ver(request, query_object, query_param):
 
         return render(request, "search.html", context)
 
-    return http.HttpResponse(f"object-->{query_object}\nParametro-->{query_param}")
+    elif query_object == 'parada':
+        context['title'] = 'Parada %s' %(query_param)
+        context['style_stop_register'] = True
+
+        routes = list()
+        existing_routes = Route.objects.all() #get all the Routes created
+        for route in existing_routes:
+            print(route.get_route_stops())
+            for stop in route.get_route_stops():
+                print(stop.name, type(stop.name))
+                if stop.name == query_param:
+                    print("ES IGUAL")
+                    routes.append(route)
+                    break
+        context['routes'] = routes
+        print("LAS RUTAS SON", context['routes'])
+        return render(request, "stop_info.html", context)
