@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+{% for route in routes %}
+    <h1>{{route.name}}</h1>
+{% endfor %}
+
+{% endblock %}
