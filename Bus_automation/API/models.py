@@ -1,4 +1,5 @@
 from django.db import models
+import datetime as dt
 
 # Create your models here.
 class Zone(models.Model):
@@ -61,3 +62,9 @@ class BusUnit(models.Model):
     id = models.IntegerField(verbose_name='ID number:', unique=True, primary_key=True)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     location = models.ForeignKey(BusStop, on_delete=models.CASCADE)
+
+
+class Register(models.Model):
+    location = models.ForeignKey(BusStop, on_delete=models.DO_NOTHING)
+    unit = models.ForeignKey(BusUnit, on_delete= models.DO_NOTHING)
+    datetime = models.DateTimeField(default= dt.datetime.now())
