@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/stop_info.css">
+    <script src="https://kit.fontawesome.com/2c23f77634.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <span id="courtain"></span>
+
+    <header>
+        <h1 class="logo">LOGO</h1>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="./busqueda.html" class="nav-item"> <h3> <i class="fas fa-route menu-icon"></i> Rutas </h3></a></li>
+                <li><a href="./busqueda.html" class="nav-item"> <h3> <i class="fas fa-bus menu-icon"></i> Paradas  </h3></a></li>
+                <li><a href="./busqueda.html" class="nav-item"> <h3> <i class="fas fa-map-marked-alt menu-icon"></i> Zonas </h3></a></li>
+            </ul>
+
+            <span id="open-menu-btn" onclick="openMenu()">
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+                <div class="parallel-bar"></div>
+            </span>
+
+            <span id="close-menu-btn" onclick="closeMenu()">
+                <div class="crossed-bar"></div>
+                <div class="crossed-bar"></div>
+            </span>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <aside id="bus-stop-info" class="bus-stop-container">
+
+            <h3 class="stop-header">Informacion de la parada</h3>
+
+            <ul class="list-info">
+               <li class="list-item"> <strong> Nombre: </strong>  Parada de prueba</li> 
+               <li class="list-item"> <strong> Direccion: </strong>  en algun lugar de barquisimeto</li>
+               <li class="list-item"> <strong> Rutas encontradas: </strong> 
+                   <ul class="list-info list-routes">
+                       <li class="list-route-item"><a href="#">Ruta 1</a></li>
+                       <li class="list-route-item"><a href="#">Ruta 2</a></li>
+                       <li class="list-route-item"><a href="#">Ruta 3</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </aside>
+
+        <section id="bus-stop-register" class="bus-stop-container">
+                <h3 class="stop-header">Registro de la parada</h3>
+                
+                <ul>
+                    <li>Registro de unidad 1</li>
+                    <li>Registro de unidad 2</li>
+                    <li>Registro de unidad 3</li>
+                    <li>Registro de unidad 4</li>
+                    <li>Registro de unidad 5</li>
+                    <li>Registro de unidad 6</li>
+                </ul>
+        </section>
+
+    </main>
+
+    <footer>
+
+        <section class="footer-section">
+            <h3>Redes Sociales</h3>
+            <a href="#" class="footer-section-item"><i class="fab fa-facebook-f"></i> Facebook </a>
+            <a href="#" class="footer-section-item"><i class="fab fa-instagram"></i> Instagram </a>
+            <a href="#" class="footer-section-item"><i class="fab fa-twitter"></i> Twitter </a>
+        </section>
+        
+        <section class="footer-section">
+            <h3>Contacto</h3>
+            <p class="footer-section-item">Email: </p>
+            <p class="footer-section-item">Telefono: </p>
+            <p class="footer-section-item">Direccion: <i>Cabudare Edo. Lara</i></p>
+        </section>
+
+        <section class="footer-section">
+            <h3>Mapa del Sitio</h3>
+            <a href="./home.html" class="footer-section-item"> Inicio </a>
+            <a href="./busqueda.html" class="footer-section-item"> Rutas </a>
+            <a href="./busqueda.html" class="footer-section-item"> Paradas </a>
+            <a href="./busqueda.html" class="footer-section-item"> Zonas </a>
+        </section>
+        
+
+    </footer>
+
+    <script src="./JS/toggle_menu.js"></script>
+</body>
+</html>
