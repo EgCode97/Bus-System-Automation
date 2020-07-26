@@ -12,6 +12,7 @@ import serial.tools.list_ports
 import time
 import requests
 import datetime
+import threading
 from cryptography.fernet import Fernet
 #---------------------------------------------------------------------------------
 #   Blueeth module commands
@@ -28,7 +29,8 @@ class BusStop:
         self.connected_devices = list()
         self.checked_bus = list()
         self.comport = self.get_comport()
-        self.location_name = 'La mata'
+        self.location_name = 'Valle hondo Bus Stop'
+        threading.Thread(target=self.clean_connected_devices, daemon=True).start()
 
     def get_comport(self):
         'Get the comport in wich the Bluetooth module is connected. Returns None if no module is connected'
@@ -95,7 +97,18 @@ class BusStop:
 
         response = requests.put(UPLOAD_URL, data=data)        
 
-
+    def clean_connected_devices(self):
+        'Remove the last unit in connected devices'
+        while True:
+            time.sleep(2*60) # wait for 2 minutes and pop the last registered mac
+            was_deleted = False
+            while not was_deleted:
+                try:
+                    self.connected_devices.pop()
+                    was_deleted = True
+                    print("ULTIMO REGISTRO BORRADO -->", datetime.datetime.now(), "\n\n")
+                except:
+                    pass
 
 
 bus_stop = BusStop()
@@ -118,10 +131,18 @@ while True:
         print("CONECTADO")
         bus_stop.connected_devices.append(device_mac)
 
+        id_received = False
+        while not id_received:
+            try:
+                bus_stop.send( "B" )
+                time.sleep(0.2)
+                bus_id = ord(bus_stop.receive(20).encode())
+            except TypeError:
+                pass
+            else:
+                id_received = True
+                print("COMUNICACIOX EXITOSA")
 
-        bus_stop.send( "B" )
-        time.sleep(0.2)
-        bus_id = ord(bus_stop.receive(20).encode())
 
         print(f"ID -> {bus_id}")
 
