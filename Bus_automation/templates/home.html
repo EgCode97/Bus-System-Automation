@@ -48,7 +48,7 @@
         <!--  Bus Stops  -->
         <ul class="search-list" value='Paradas'>
             {% for stop in stops %}
-                <a href="#" class="search-item"> <li> {{stop}} </li> </a>
+                <a href="/ver/parada/{{stop}}" class="search-item"> <li> {{stop}} </li> </a>
             {% endfor %}
         </ul>
         <!--  Ends Bus Stops  -->
@@ -56,7 +56,7 @@
         <!--  Zones  -->
         <ul class="search-list" value='Zonas'>
             {% for zone in zones %}
-                <a href="#" class="search-item"> <li> {{zone}} </li> </a>
+                <a href="/ver/zona/{{zone}}" class="search-item"> <li> {{zone}} </li> </a>
             {% endfor %}
         </ul>
         <!--  Ends zones  -->
