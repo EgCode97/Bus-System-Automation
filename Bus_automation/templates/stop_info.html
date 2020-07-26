@@ -4,8 +4,39 @@
 
 {% block content %}
 
-{% for route in routes %}
-    <h1>{{route.name}}</h1>
-{% endfor %}
+{% load custom_filters %}
+
+
+    <aside id="bus-stop-info" class="bus-stop-container">
+
+        <h3 class="stop-header">Informacion General {{title}}</h3>
+
+        <ul class="list-info">
+        <li class="list-item"> <strong> Nombre: </strong>  {{title}}</li> 
+        <li class="list-item"> <strong> Direccion: </strong> direccion </li>
+        <li class="list-item"> <strong> Rutas encontradas: </strong> 
+            <ul class="list-info list-routes">
+                    {% for route in routes %}
+                        <li class="list-route-item"><a href="/ver/ruta/{{route.name}}">{{route}}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+
+        </ul>
+    </aside>
+
+    <section id="bus-stop-register" class="bus-stop-container">
+        <h3 class="stop-header">Registro de la parada</h3>
+        
+        <ul>
+            {% for register in stops_register %}
+                <li> 
+                    Ruta: {{register.unit.route}} - {{register.datetime.day}}/{{register.datetime.month|month_as_str}}/{{register.datetime.year}} - 
+                    {{register.datetime.hour}}:{{register.datetime.minute|minutes_two_digits}}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
 
 {% endblock %}
