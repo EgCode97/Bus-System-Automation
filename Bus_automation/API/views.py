@@ -144,8 +144,8 @@ def ver(request, query_object, query_param):
         context['routes'] = routes
 
         # Get the last registered bus stops for the given stop
-        bus_stop = BusStop.objects.get(name=query_param)
-        print("LA PARADA ES -->", bus_stop, "\n\n")
+        context["bus_stop"] = BusStop.objects.get(name=query_param)
+        print("LA PARADA ES -->", context["bus_stop"], "\n\n")
 
         context['stops_register'] = Register.objects.filter(location__name__iexact=query_param)[::-1][:10]
         print(context['stops_register'])
