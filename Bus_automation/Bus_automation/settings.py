@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-#import django_heroku
+import django_heroku
 from corsheaders.defaults import default_headers
 
 CORS_ALLOW_HEADERS = default_headers + (
@@ -145,4 +145,4 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
