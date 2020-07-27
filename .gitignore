@@ -1,4 +1,4 @@
-website-template/*.txt
+website-template
 Bus_Stop_Script/post_data.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
