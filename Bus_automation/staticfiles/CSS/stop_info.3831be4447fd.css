@@ -1,0 +1,102 @@
+main{
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.bus-stop-container{
+    width: 90%;
+    margin: 20px 0;
+    border: 2px solid var(--color-main);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.stop-header{
+    background-color: var(--color-main-light);
+    padding: 10px;
+    color: white;
+}
+
+.list-info{
+    list-style: none;
+}
+
+.list-item{
+    border-top: 1px solid #000;
+    padding: 15px 5%;
+}
+
+/* NESTED LIST -> LIST CONTAINING ROUTES */
+
+
+.list-route-item{
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 6px; 
+}
+
+
+.list-route-item a{
+    position: relative;
+    overflow: hidden;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: inherit;
+    transition: all .4s;
+}
+
+.list-route-item:nth-child(even){
+    background-color: var(--color-main);
+}
+
+.list-route-item:nth-child(odd){
+    background-color: var(--color-main-dark);
+}
+
+.list-route-item a:hover{
+    background-color: var(--color-secondary-dark);
+    color: #000;
+}
+
+
+/* REGISTER SECTION */
+
+#bus-stop-register ul{
+    list-style: none;
+}
+
+#bus-stop-register ul li{
+    height: 35px;
+    padding-left: 10%;
+    display: flex;
+    align-items: center;
+    color: var(--color-secondary);
+}
+
+#bus-stop-register ul li:nth-child(even){
+    background-color: var(--color-main);
+}
+
+#bus-stop-register ul li:nth-child(odd){
+    background-color: var(--color-main-dark);
+}
+
+@media only screen and (min-width: 760px){
+    main{
+        justify-content: space-around;
+    }
+
+    #bus-stop-info{
+        width: 20%;
+    }
+
+    #bus-stop-register{
+        width: 60%;
+        max-width: 700px;
+    }
+}
